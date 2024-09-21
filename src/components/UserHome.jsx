@@ -4,9 +4,8 @@ import AuthService from "../appwrite/Auth";
 import dataService from "../appwrite/Data";
 import Card from "./Card";
 import AddIcon from "../svg/AddIcon.png";
-import Content from "./Content";
-import { ColorRing } from "react-loader-spinner";
-import mydelete from '../svg/mydelete.svg'
+import Loader from './Loader'
+
 
 function UserHome() {
   const navigate = useNavigate();
@@ -14,7 +13,7 @@ function UserHome() {
   const [isLoading, setIsLoading] = useState(false);
   const [session, setSession] = useState(null);
   const [usernotes, setUsernotes] = useState([]);
-  const [ image, setImage ] = useState([])
+  // const [ image, setImage ] = useState([])
 
   useEffect(() => {
     setIsLoading(true);
@@ -64,25 +63,16 @@ function UserHome() {
 
   if (isLoading) {
     return (
-      <div className="flex justify-center items-center content-center mt-48">
-        <ColorRing
-          visible={true}
-          height="80"
-          width="80"
-          ariaLabel="color-ring-loading"
-          wrapperStyle={{}}
-          wrapperClass="color-ring-wrapper"
-          colors={["#e15b64", "#f47e60", "#f8b26a", "#abbd81", "#849b87"]}
-        />
-      </div>
+      <Loader/>
     );
   }
 
   return (
+    <>
     <div className="static ">
       {session && (
         <div
-        className="mt-5 userHome mb-28  grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 "
+        className="mt-5 userHome mb-28  grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 "
         >
           {/* Display Notes if Available */}
           {usernotes.length > 0 ? (
@@ -104,13 +94,14 @@ function UserHome() {
           {/* "Add Post" Button Styled to Align with Cards */}
           <div
             onClick={() => navigate("/addpost")}
-            className="w-80 h-48 bg-gray-300 rounded-xl shadow-md flex justify-center items-center cursor-pointer hover:opacity-70"
+            className="w-14 absolute bottom-10 right-10 h-14 bg-blue-900  rounded-xl shadow-md flex justify-center items-center cursor-pointer hover:opacity-70"
           >
-            <img width={100} src={AddIcon} alt="Add" />
+            <img className="" width={20} src={AddIcon} alt="Add" />
           </div>
         </div>
       )}
     </div>
+    </>
   );
 }
 

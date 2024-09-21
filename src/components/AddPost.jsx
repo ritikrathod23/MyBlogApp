@@ -8,7 +8,7 @@ export default function AddPost() {
   const { id } = useParams();
   const [session, setSession] = useState(null);
   const [image, setImage] = useState(null);
-  const [note, setNote] = useState({ title: '', content: '' }); // Initialize as empty
+  const [note, setNote] = useState([]); // Initialize as empty
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -20,9 +20,11 @@ export default function AddPost() {
         // If 'id' exists, fetch the note (we are in update mode)
           const mydata = await DataService.getData(id)
           if (mydata) {
-            const myImage = await DataService.getImage(mydata.fileId)
-            const noteWithImage = { ...note, myImage }
+            const myImage = await DataService.getImagePreview(mydata.fileId)
+            const noteWithImage = { ...mydata, myImage }
             setNote(noteWithImage)
+            console.log("details: ",note.myImage)
+
           }
         }
     };
@@ -70,6 +72,10 @@ export default function AddPost() {
     setImage(featuredfile);
   };
 
+  const handleCancel = ()=>{
+    navigate('/userhome');
+  }
+
   return (
     <div className="bg-slate-200 p-10">
       <form onSubmit={handleSubmit}>
@@ -115,31 +121,38 @@ export default function AddPost() {
               Cover photo
             </label>
             <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
-              <div className="text-center">
-                <PhotoIcon aria-hidden="true" className="mx-auto h-12 w-12 text-gray-300" />
-                <div className="mt-4 flex text-sm leading-6 text-gray-600">
-                  <label
-                    htmlFor="file-upload"
-                    className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
-                  >
-                    <span>Upload a file</span>
-                    <input
-                      onChange={handleImage}
-                      id="file-upload"
-                      name="fileUpload"
-                      type="file"
-                      accept="image/*"
-                      className="sr-only"
-                      value={note.myimage}
-                    />
-                  </label>
-                  <p className="pl-1">or drag and drop</p>
+                <div className="text-center">
+                  
+                    <PhotoIcon aria-hidden="true" className="mx-auto h-12 w-12 text-gray-300" />
+                    <div className="mt-4 flex text-sm leading-6 text-gray-600">
+                      <label
+                        htmlFor="file-upload"
+                        className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
+                      >
+                        <span>Upload a file</span>
+                        <input
+                          onChange={handleImage}
+                          id="file-upload"
+                          name="fileUpload"
+                          type="file"
+                          accept="image/*"
+                          className="sr-only"
+                          
+                        />
+                      </label>
+                      <p className="pl-1">or drag and drop</p>
+                    </div>
+                    <p className="text-xs leading-5 text-gray-600">PNG, JPG, GIF up to 10MB</p>
                 </div>
-                <p className="text-xs leading-5 text-gray-600">PNG, JPG, GIF up to 10MB</p>
-              </div>
+
+            </div>
+            <div className=" image mt-2 sm:grid-cols-1 rounded-md bg-slate-200  " >
+              {note.Image && (
+              <img className="rounded-md" width={100} height={100} src={note.myImage} alt="no image" />
+              )}
             </div>
             <div className="mt-6 flex items-center justify-end gap-x-6">
-              <button type="button" className="text-sm font-semibold leading-6 text-gray-900">
+              <button onClick={handleCancel} type="button" className="text-sm font-semibold leading-6 text-gray-900">
                 Cancel
               </button>
               <button
@@ -150,6 +163,7 @@ export default function AddPost() {
               </button>
             </div>
           </div>
+         
         </div>
       </form>
     </div>

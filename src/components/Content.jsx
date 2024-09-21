@@ -4,6 +4,7 @@ import dataService from "../appwrite/Data";
 import { ColorRing } from "react-loader-spinner";
 
 import mydelete from '../svg/mydelete.svg'
+import Loader from "./Loader";
 
 function CardDetail() {
   const { id } = useParams(); // Get the ID from the URL
@@ -57,17 +58,7 @@ function CardDetail() {
   // Loader when card details are not yet fetched
   if (!cardDetails) {
     return (
-      <div className="flex justify-center items-center content-center mt-48">
-        <ColorRing
-          visible={true}
-          height="80"
-          width="80"
-          ariaLabel="color-ring-loading"
-          wrapperStyle={{}}
-          wrapperClass="color-ring-wrapper"
-          colors={["#e15b64", "#f47e60", "#f8b26a", "#abbd81", "#849b87"]}
-        />
-      </div>
+      <Loader/>
     );
   }
 

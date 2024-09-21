@@ -1,12 +1,14 @@
 import { useState } from "react";
 import AuthService from "../appwrite/Auth";
 import { useNavigate, Link } from "react-router-dom";
-import Alert from "./Alert";
 import AddIcon from "../svg/AddIcon.png";
+import Alerts from './Alert';
 
 export default function SignUp() {
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const [ alert, setAlert ] = useState({show: true, message: '',  type: ''});
+
 
   const handleSubmit = async (event) => {
     setError("");
@@ -20,11 +22,21 @@ export default function SignUp() {
       );
       // handle successful account creation
       if (AuthService.getUserSession) {
-        navigate("/userhome");
-      } else {
-        navigate("/login");
+        setAlert({
+          show: true,
+          message: 'Account created successfully',
+          type: 'success'
+        })
+        setInterval(() => {
+          navigate("/login");
+        }, 2000);
       }
     } catch (error) {
+      setAlert({
+        show: true,
+        message: 'Invalid Creadentials',
+        type: 'error'
+      })
       setError("SignUp failed");
       console.log(error);
     }
@@ -32,6 +44,10 @@ export default function SignUp() {
 
   return (
     <>
+      { alert.show && (
+        <Alerts {...alert}/>
+      )}
+
       <div className="flex justify-center items-center w-96 m-2 mt-5  ">
         <div className="rounded-lg flex min-h-40 bg-slate-700  flex-1 flex-col justify-center px-6 py-6  lg:px-8">
           <div className="sm:mx-auto sm:w-full sm:max-w-sm">

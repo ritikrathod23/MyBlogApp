@@ -118,7 +118,8 @@ class DataService {
       // Ensure to return the resolved URL
       const imageUrl = await this.storage.getFilePreview(
         conf.appwriteStorage,  // Storage bucket ID or constant
-        fileId                 // File ID for the image
+        fileId,
+        {width: 100, height: 100}                 // File ID for the image
       );
       return imageUrl; // This will be the URL to the image
     } catch (error) {

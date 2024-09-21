@@ -1,11 +1,13 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import AuthService from '../appwrite/Auth';  // Ensure AuthService is properly set up
 import { useNavigate, Link } from 'react-router-dom';
-import Alert from './Alert';
+// import { Alert } from '@mui/material';
+import Alerts from './Alert';
 
-export default function SignUp() {
+
+export default function Login() {
   const navigate = useNavigate();
-  const [ alert, setAlert ] = useState({ show: false, message: "", type: "" })
+  const [ alert, setAlert ] = useState({show: false, message: '', type: ""});
 
   // Login function
   const handleLogin = async (event) => {
@@ -13,10 +15,9 @@ export default function SignUp() {
     const { email, password } = event.target.elements;
     try {
       const userData = await AuthService.login(email.value, password.value);
-      setAlert(userData)
       console.log(userData);
       if (userData) {
-        showAlert("Login successful")
+        setAlert({show: true, message:"Login successful", type: "success"})
         console.log('Login successful');
         setTimeout(() => {
           navigate('/userhome')
@@ -24,22 +25,19 @@ export default function SignUp() {
         // navigate('/userhome'); // Navigate to another page upon successful login
       }
     } catch (error) {
+      setAlert({show: true,  message: "Please, Enter valid Credentials  ", type: "error"});
+
       console.error('Cannot login:', error.message || error);
+
     }
-  };
-  const showAlert = (message, type) => {
-    setAlert({ show: true, message, type });
-    setTimeout(() => {
-      setAlert({ show: false, message: "", type: "" });
-    }, 1000); // Hide after 3 seconds
   };
 
   return (
     <>
-      {alert.show && (
-          <Alert  message={alert.message} type={alert.type} />
+      { alert.show && (
+        <Alerts {...alert}/>
+      )}
 
-        )}
         <div className="flex justify-center items-center w-96 m-2 mt-5  ">
           <div className="rounded-lg flex min-h-40 bg-slate-700 flex-1 flex-col justify-center px-6 py-12 lg:px-8">
             <div className="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -98,6 +96,7 @@ export default function SignUp() {
                   </button>
                 </div>
               </form>
+              
               
 
               <p className="mt-10 text-center text-sm text-gray-500">
