@@ -63,17 +63,18 @@ function CardDetail() {
   }
 
   return (
-    <div className="">
-      <div className="text-white card-details-container w-lvw  p-10 pl-44">
+    <div className="content">
+      <div className="text-white card-details-container mt-5 ">
         <div className=""> Title </div>
-        <div className="w-5/6 my-5 border-sky-200 border-2 rounded-md content-center p-2">
+        <div className=" my-5 border-sky-200 border-2 rounded-md content-center p-2">
           <h1>{cardDetails.title}</h1>
         </div>
 
         <div>
           <div> Content </div>
-          <p className="w-5/6 h-auto my-5 border-sky-200 border-2 rounded-md content-center p-2">
+          <p className=" my-5 border-sky-200 border-2 rounded-md content-center p-2">
            {cardDetails.content}
+           
            
           </p>
           
@@ -82,7 +83,7 @@ function CardDetail() {
             <img
               src={image}
               alt="Card Image"
-              className="w-5/6 h-auto my-5 border-sky-200 border-2 rounded-md content-center p-2"
+              className="  mb-20 border-sky-200 border-2 rounded-md content-center p-2"
             />
           ) : (
             <p>No image available</p>

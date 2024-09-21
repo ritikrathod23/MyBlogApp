@@ -23,3 +23,7 @@ body{
 img{
     object-fit: cover   ;
 }
+.content{
+    width: 75vw;
+    height: 75vh;
+}
