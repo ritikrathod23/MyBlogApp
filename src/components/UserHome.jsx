@@ -94,7 +94,7 @@ function UserHome() {
           {/* "Add Post" Button Styled to Align with Cards */}
           <div
             onClick={() => navigate("/addpost")}
-            className="w-14 absolute bottom-10 right-10 h-14 bg-blue-900  rounded-xl shadow-md flex justify-center items-center cursor-pointer hover:opacity-70"
+            className="w-14 fixed bottom-10 right-10 h-14 bg-blue-900  rounded-xl shadow-md flex justify-center items-center cursor-pointer hover:opacity-70"
           >
             <img className="" width={20} src={AddIcon} alt="Add" />
           </div>
