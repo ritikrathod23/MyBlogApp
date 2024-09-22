@@ -79,10 +79,10 @@ export default function AddPost() {
   return (
     <div className="bg-slate-200 p-10">
       <form onSubmit={handleSubmit}>
-        <p className=" text-sm leading-6 text-gray-600 ">
+        <p className=" text-sm leading-6 text-gray-600 pl-5 ">
           {id ? "Update Your Post" : "Create a New Post"}
         </p>
-        <div className="grid lg:grid-cols-3 sm:grid-cols-1 gap-10">
+        <div className="grid lg:grid-cols-3 sm:grid-cols-1 gap-10 pl-5">
           <div className="mt-5 col-span-2 gap-x-6 gap-y-8">
             <div className="sm:col-span-4">
               <label htmlFor="title" className="block text-sm font-medium leading-6 text-gray-900">
