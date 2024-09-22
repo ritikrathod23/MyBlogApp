@@ -64,7 +64,7 @@ function CardDetail() {
 
   return (
     <div className="content">
-      <div className="text-white card-details-container mt-5 ">
+      <div className="text-white card-details-container mt-5 sm:p-10 ">
         <div className=""> Title </div>
         <div className=" my-5 border-sky-200 border-2 rounded-md content-center p-2">
           <h1>{cardDetails.title}</h1>
