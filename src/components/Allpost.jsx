@@ -7,7 +7,7 @@ import AddIcon from "../svg/AddIcon.png";
 import Loader from './Loader'
 
 
-function UserHome() {
+function Allpost() {
   const navigate = useNavigate();
   const [notes, setNotes] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -31,19 +31,17 @@ function UserHome() {
       }
   
       // Step 2: Fetch User ID
-      const currentUser = await AuthService.getCurrentUser();
-      const myuserId = currentUser.$id;
-      console.log("currentUserID", myuserId);
+    //   const currentUser = await AuthService.getCurrentUser();
+    //   const myuserId = currentUser.$id;
+    //   console.log("currentUserID", myuserId);
   
       // Step 3: Fetch Notes
-      const response = await dataService.getUserData(myuserId);
-      const filteredNotes = response.documents.filter(
-        (note) => note.userId === myuserId
-      );
+      const response = await dataService.getUserData();
+      const allpost = response.documents
+
   
-      // Step 4: Fetch image for each note
       const notesWithImages = await Promise.all(
-        filteredNotes.map(async (note) => {
+        allpost.map(async (note) => {
           if (note.fileId) {
             const imageUrl = await dataService.getImage(note.fileId);
             return { ...note, imageUrl }; // Add image URL to the note object
@@ -98,12 +96,6 @@ function UserHome() {
           >
             <img className="" width={20} src={AddIcon} alt="Add" />
           </div>
-          <div
-            onClick={() => navigate("/allpost")}
-            className="w-14 fixed bottom-10 right-28 h-14 bg-blue-900  rounded-xl shadow-md flex justify-center items-center cursor-pointer hover:opacity-70"
-          >
-            <img className="" width={20} src={AddIcon} alt="Add" />
-          </div>
         </div>
       )}
     </div>
@@ -111,4 +103,4 @@ function UserHome() {
   );
 }
 
-export default UserHome;
+export default Allpost;

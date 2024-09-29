@@ -16,6 +16,7 @@ import Home from './components/Home';
 import AddPost from './components/AddPost';
 import UserHome from './components/UserHome'
 import Content from './components/Content';
+import Allpost from './components/Allpost'
 
 const router = createBrowserRouter([
   {
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
       {
         path: "/userhome",
         element: <UserHome/>,
+      },
+      {
+        path: "/allpost",
+        element: <Allpost/>,
       },
       {
         path: "content/:id",

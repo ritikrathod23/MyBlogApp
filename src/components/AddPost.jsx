@@ -19,7 +19,7 @@ export default function AddPost() {
       if (id) {
         // If 'id' exists, fetch the note (we are in update mode)
           const mydata = await DataService.getData(id)
-          if (mydata) {
+          if (mydata) { 
             const myImage = await DataService.getImagePreview(mydata.fileId)
             const noteWithImage = { ...mydata, myImage }
             setNote(noteWithImage)
@@ -68,8 +68,8 @@ export default function AddPost() {
   };
 
   const handleImage = (event) => {
-    const featuredfile = document.getElementById("file-upload").files[0];
-    setImage(featuredfile);
+    const myImage = document.getElementById("file-upload").files[0];
+      setImage(myImage)
   };
 
   const handleCancel = ()=>{
@@ -147,8 +147,8 @@ export default function AddPost() {
 
             </div>
             <div className=" image mt-2 sm:grid-cols-1 rounded-md bg-slate-200  " >
-              {note.Image && (
-              <img className="rounded-md" width={100} height={100} src={note.myImage} alt="no image" />
+              {note.myImage && (
+              <img className="rounded-md bg-gray-500 " width={100} height={100} src={note.myImage} alt="no image" />
               )}
             </div>
             <div className="mt-6 flex items-center justify-end gap-x-6">
