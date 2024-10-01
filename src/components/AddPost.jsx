@@ -7,6 +7,7 @@ import { useNavigate, useParams } from "react-router-dom";
 export default function AddPost() {
   const { id } = useParams();
   const [session, setSession] = useState(null);
+  const [message, setMessage] = useState("");
   const [image, setImage] = useState(null);
   const [note, setNote] = useState([]); // Initialize as empty
   const navigate = useNavigate();
@@ -15,6 +16,7 @@ export default function AddPost() {
     const checkSession = async () => {
       const getSession = await AuthService.getUserSession();
       setSession(getSession);
+      setMessage("")
 
       if (id) {
         // If 'id' exists, fetch the note (we are in update mode)
@@ -54,11 +56,13 @@ export default function AddPost() {
           const updated = await DataService.updateData(id, update);
           console.log("updated: ", updated)
           console.log("Post updated");
+          setMessage("Post updated")
         } 
         else {
           // Create mode
           await DataService.createPost(userId, title.value, content.value, fileId);
           console.log("Post created");
+          setMessage("Post created")
         }
       } catch (error) {
         console.log(error.message, "error");
@@ -78,6 +82,12 @@ export default function AddPost() {
 
   return (
     <div className="bg-slate-200 p-10">
+      <div className="h-6 text-green-500 text-center my-2" >
+        { message && <p>
+          helllo 
+        </p>
+        }
+      </div>
       <form onSubmit={handleSubmit}>
         <p className=" text-sm leading-6 text-gray-600 pl-5 ">
           {id ? "Update Your Post" : "Create a New Post"}

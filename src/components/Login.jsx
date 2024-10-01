@@ -70,7 +70,7 @@ export default function Login() {
                       Password
                     </label>
                     <div className="text-sm">
-                      <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
+                      <a href="#" className="font-semibold text-indigo-300 hover:text-indigo-500">
                         Forgot password?
                       </a>
                     </div>
@@ -100,7 +100,7 @@ export default function Login() {
               
 
               <p className="mt-10 text-center text-sm text-gray-500">
-                <Link to={"/signup"} className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
+                <Link to={"/signup"} className="font-semibold leading-6 text-indigo-300 hover:text-indigo-500">
                   Don't have a account, register yourself
                 </Link>
               </p>

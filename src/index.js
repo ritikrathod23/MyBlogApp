@@ -47,10 +47,10 @@ const router = createBrowserRouter([
         path: "/userhome",
         element: <UserHome/>,
       },
-      {
-        path: "/allpost",
-        element: <Allpost/>,
-      },
+      // {
+      //   path: "/allpost",
+      //   element: <Allpost/>,
+      // },
       {
         path: "content/:id",
         element: <Content/>

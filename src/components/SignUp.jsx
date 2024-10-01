@@ -6,6 +6,7 @@ import Alerts from './Alert';
 
 export default function SignUp() {
   const [error, setError] = useState("");
+  const [message, setMessage] = useState("");
   const navigate = useNavigate();
   const [ alert, setAlert ] = useState({show: true, message: '',  type: ''});
 
@@ -22,11 +23,7 @@ export default function SignUp() {
       );
       // handle successful account creation
       if (AuthService.getUserSession) {
-        setAlert({
-          show: true,
-          message: 'Account created successfully',
-          type: 'success'
-        })
+        setMessage("Sign up successfully");
         setInterval(() => {
           navigate("/login");
         }, 2000);
@@ -37,7 +34,7 @@ export default function SignUp() {
         message: 'Invalid Creadentials',
         type: 'error'
       })
-      setError("SignUp failed");
+      setError("Invalid Creadentials, Please try again");
       console.log(error);
     }
   };
@@ -62,7 +59,10 @@ export default function SignUp() {
           </div>
 
           <div className=" sm:mx-auto sm:w-full sm:max-w-sm">
+            <div className="h-6">
             {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
+            {message && <p className="text-green-600 mt-8 text-center">{message}</p>}
+            </div>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label
@@ -111,7 +111,7 @@ export default function SignUp() {
                   <div className="text-sm">
                     <a
                       href="#"
-                      className="font-semibold text-indigo-600 hover:text-indigo-500"
+                      className="font-semibold text-indigo-400 hover:text-indigo-500"
                     >
                       Forgot password?
                     </a>
@@ -141,7 +141,7 @@ export default function SignUp() {
             <p className=" block mt-3 text-center text-sm text-gray-500">
               <Link
                 to={"/login"}
-                className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
+                className="font-semibold leading-6 text-indigo-400 hover:text-indigo-500"
               >
                 Have an account, Login
               </Link>

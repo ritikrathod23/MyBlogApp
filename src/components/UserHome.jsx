@@ -98,12 +98,12 @@ function UserHome() {
           >
             <img className="" width={20} src={AddIcon} alt="Add" />
           </div>
-          <div
+          {/* <div
             onClick={() => navigate("/allpost")}
             className="w-14 fixed bottom-10 right-28 h-14 bg-blue-900  rounded-xl shadow-md flex justify-center items-center cursor-pointer hover:opacity-70"
           >
             <img className="" width={20} src={AddIcon} alt="Add" />
-          </div>
+          </div> */}
         </div>
       )}
     </div>
