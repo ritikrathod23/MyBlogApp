@@ -7,6 +7,7 @@ import { useNavigate, useParams } from "react-router-dom";
 export default function AddPost() {
   const { id } = useParams();
   const [session, setSession] = useState(null);
+  const [message, setMessage] = useState("");
   const [image, setImage] = useState(null);
   const [note, setNote] = useState([]); // Initialize as empty
   const navigate = useNavigate();
@@ -15,11 +16,12 @@ export default function AddPost() {
     const checkSession = async () => {
       const getSession = await AuthService.getUserSession();
       setSession(getSession);
+      setMessage("")
 
       if (id) {
         // If 'id' exists, fetch the note (we are in update mode)
           const mydata = await DataService.getData(id)
-          if (mydata) {
+          if (mydata) { 
             const myImage = await DataService.getImagePreview(mydata.fileId)
             const noteWithImage = { ...mydata, myImage }
             setNote(noteWithImage)
@@ -51,10 +53,21 @@ export default function AddPost() {
         if (id) {
           // Update mode
           const updated = await DataService.updateData(id, update);
+<<<<<<< HEAD
+=======
+          console.log("updated: ", updated)
+          console.log("Post updated");
+          setMessage("Post updated")
+>>>>>>> 925ee5b0da14f9fd2d39b311561cfd20d8353a68
         } 
         else {
           // Create mode
           await DataService.createPost(userId, title.value, content.value, fileId);
+<<<<<<< HEAD
+=======
+          console.log("Post created");
+          setMessage("Post created")
+>>>>>>> 925ee5b0da14f9fd2d39b311561cfd20d8353a68
         }
       } catch (error) {
         console.log(error.message, "error");
@@ -64,8 +77,8 @@ export default function AddPost() {
   };
 
   const handleImage = (event) => {
-    const featuredfile = document.getElementById("file-upload").files[0];
-    setImage(featuredfile);
+    const myImage = document.getElementById("file-upload").files[0];
+      setImage(myImage)
   };
 
   const handleCancel = ()=>{
@@ -73,12 +86,24 @@ export default function AddPost() {
   }
 
   return (
+<<<<<<< HEAD
     <div className="p-5 md:p-10">
       <form onSubmit={handleSubmit}>
         <p className=" text-3xl font-bold leading-6 text-gray-600 ">
+=======
+    <div className="bg-slate-200 p-10">
+      <div className="h-6 text-green-500 text-center my-2" >
+        { message && <p>
+          helllo 
+        </p>
+        }
+      </div>
+      <form onSubmit={handleSubmit}>
+        <p className=" text-sm leading-6 text-gray-600 pl-5 ">
+>>>>>>> 925ee5b0da14f9fd2d39b311561cfd20d8353a68
           {id ? "Update Your Post" : "Create a New Post"}
         </p>
-        <div className="grid lg:grid-cols-3 sm:grid-cols-1 gap-10">
+        <div className="grid lg:grid-cols-3 sm:grid-cols-1 gap-10 pl-5">
           <div className="mt-5 col-span-2 gap-x-6 gap-y-8">
             <div className="sm:col-span-4">
               <label htmlFor="title" className="block text-xl font-medium leading-6 text-gray-900">
@@ -143,8 +168,8 @@ export default function AddPost() {
 
             </div>
             <div className=" image mt-2 sm:grid-cols-1 rounded-md bg-slate-200  " >
-              {note.Image && (
-              <img className="rounded-md" width={100} height={100} src={note.myImage} alt="no image" />
+              {note.myImage && (
+              <img className="rounded-md bg-gray-500 " width={100} height={100} src={note.myImage} alt="no image" />
               )}
             </div>
             <div className="mt-6 flex items-center justify-end gap-x-6">

@@ -92,11 +92,16 @@ export default function Login() {
                     >
                       Password
                     </label>
+<<<<<<< HEAD
                     {/* <div className="text-sm">
                       <a
                         href="#"
                         className="font-semibold text-indigo-600 hover:text-indigo-500"
                       >
+=======
+                    <div className="text-sm">
+                      <a href="#" className="font-semibold text-indigo-300 hover:text-indigo-500">
+>>>>>>> 925ee5b0da14f9fd2d39b311561cfd20d8353a68
                         Forgot password?
                       </a>
                     </div> */}
@@ -130,10 +135,14 @@ export default function Login() {
               </form>
 
               <p className="mt-10 text-center text-sm text-gray-500">
+<<<<<<< HEAD
                 <Link
                   to={"/signup"}
                   className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
                 >
+=======
+                <Link to={"/signup"} className="font-semibold leading-6 text-indigo-300 hover:text-indigo-500">
+>>>>>>> 925ee5b0da14f9fd2d39b311561cfd20d8353a68
                   Don't have a account, register yourself
                 </Link>
               </p>

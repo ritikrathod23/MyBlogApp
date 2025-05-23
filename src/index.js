@@ -9,6 +9,7 @@ import {
   Route,
   Link,
 } from "react-router-dom";
+<<<<<<< HEAD
 import SignUp from "./components/SignUp";
 import Login from "./components/Login";
 import Dashboard from "./components/Dashboard";
@@ -18,6 +19,16 @@ import UserHome from "./components/UserHome";
 import Content from "./components/Content";
 import AboutUs from "./components/AboutUs";
 import { AuthContextProvider } from "./context/authContext";
+=======
+import SignUp from './components/SignUp';
+import Login from './components/Login'
+import Dashboard from './components/Dashboard';
+import Home from './components/Home';
+import AddPost from './components/AddPost';
+import UserHome from './components/UserHome'
+import Content from './components/Content';
+import Allpost from './components/Allpost'
+>>>>>>> 925ee5b0da14f9fd2d39b311561cfd20d8353a68
 
 const router = createBrowserRouter([
   {
@@ -52,6 +63,10 @@ const router = createBrowserRouter([
         path: "/about",
         element: <AboutUs />,
       },
+      // {
+      //   path: "/allpost",
+      //   element: <Allpost/>,
+      // },
       {
         path: "content/:id",
         element: <Content />,

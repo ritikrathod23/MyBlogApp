@@ -87,11 +87,30 @@ function UserHome() {
               <img className="opacity-65 hover:opacity-100" width={100} src={AddIcon} alt="Add" />
             </div>
 
+<<<<<<< HEAD
             {/* "Add Post" Button Styled to Align with Cards */}
             
           </div>
         )}
       </div>
+=======
+          {/* "Add Post" Button Styled to Align with Cards */}
+          <div
+            onClick={() => navigate("/addpost")}
+            className="w-14 fixed bottom-10 right-10 h-14 bg-blue-900  rounded-xl shadow-md flex justify-center items-center cursor-pointer hover:opacity-70"
+          >
+            <img className="" width={20} src={AddIcon} alt="Add" />
+          </div>
+          {/* <div
+            onClick={() => navigate("/allpost")}
+            className="w-14 fixed bottom-10 right-28 h-14 bg-blue-900  rounded-xl shadow-md flex justify-center items-center cursor-pointer hover:opacity-70"
+          >
+            <img className="" width={20} src={AddIcon} alt="Add" />
+          </div> */}
+        </div>
+      )}
+    </div>
+>>>>>>> 925ee5b0da14f9fd2d39b311561cfd20d8353a68
     </>
   );
 }
