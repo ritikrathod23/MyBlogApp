@@ -23,7 +23,6 @@ export default function AddPost() {
             const myImage = await DataService.getImagePreview(mydata.fileId)
             const noteWithImage = { ...mydata, myImage }
             setNote(noteWithImage)
-            console.log("details: ",note.myImage)
 
           }
         }
@@ -52,13 +51,10 @@ export default function AddPost() {
         if (id) {
           // Update mode
           const updated = await DataService.updateData(id, update);
-          console.log("updated: ", updated)
-          console.log("Post updated");
         } 
         else {
           // Create mode
           await DataService.createPost(userId, title.value, content.value, fileId);
-          console.log("Post created");
         }
       } catch (error) {
         console.log(error.message, "error");
@@ -77,15 +73,15 @@ export default function AddPost() {
   }
 
   return (
-    <div className="bg-slate-200 p-10">
+    <div className="p-5 md:p-10">
       <form onSubmit={handleSubmit}>
-        <p className=" text-sm leading-6 text-gray-600 ">
+        <p className=" text-3xl font-bold leading-6 text-gray-600 ">
           {id ? "Update Your Post" : "Create a New Post"}
         </p>
         <div className="grid lg:grid-cols-3 sm:grid-cols-1 gap-10">
           <div className="mt-5 col-span-2 gap-x-6 gap-y-8">
             <div className="sm:col-span-4">
-              <label htmlFor="title" className="block text-sm font-medium leading-6 text-gray-900">
+              <label htmlFor="title" className="block text-xl font-medium leading-6 text-gray-900">
                 Title
               </label>
               <div className="mt-2">
@@ -95,13 +91,13 @@ export default function AddPost() {
                   type="text"
                   placeholder="Title"
                   defaultValue={note.title} // Pre-fill for update mode
-                  className="block flex-1 w-5/6 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                  className="block flex-1 w-full md:w-5/6  border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
 
             <div className="sm:col-span-4">
-              <label htmlFor="content" className="block text-sm font-medium leading-6 text-gray-900">
+              <label htmlFor="content" className="block text-xl text-sm font-medium leading-6 text-gray-900">
                 Content
               </label>
               <div className="mt-2">

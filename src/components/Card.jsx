@@ -1,43 +1,57 @@
-import React from 'react'
-import { Link } from "react-router-dom";
-import jjk from '../svg/jjk.jpg'
-import mydelete from '../svg/mydelete.svg'
+import React, { useEffect } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import mydelete from "../svg/mydelete.svg";
+import { MdDeleteOutline } from "react-icons/md";
+import { MdEditNote } from "react-icons/md";
+import dataService from "../appwrite/Data";
+import { useState } from "react";
+
+function Card({ full }) {
+  const navigate = useNavigate();
+
+  
 
 
-function Card({note, image}) 
- {
+  const handleEdit = (e) => {
+    e.preventDefault()
+    e.stopPropagation();
+    navigate(`/addpost/${full?.$id}`);
+  };
 
+  const handleDelete = async (e) => {
+    // e.preventDefault()
+    e.stopPropagation()
+    const fileId = full.fileId;
+    await dataService.deleteContent(full?.$id);
+    if (fileId) {
+      await dataService.deleteImage(fileId);
+    }
+  };
   return (
-
-    
-      <div
-          className="rounded-lg bg-slate-200  w-80 h-52 p-2  
-          shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 bg-[hsla(0,0%,98%,0.15) ">
-            <Link to={'/userhome'}>
-            <div
-              className="relative overflow-hidden bg-cover bg-no-repeat  bg-fixed opacity-100 transition duration-300 ease-in-out hover:opacity-80 cursor-pointer ">
-              <img
-                className="rounded-t-lg w-80 h-40 "
-                src={image}
-                alt="no image" />
-            </div>
-            
-            <h5
-              className="grid grid-cols-2 mx-2 items-center  text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
-              {note}
-            {/* <img className='relative left-20 hover:fill-slate-500'
-            onClick={handleDelete}
-              width={20} 
-              src={mydelete} 
-              alt="Add" 
-              /> */}
-            </h5>
-            <div>
-            </div>
-            </Link>
-              
-      </div>
-  )
+    <div
+      className="flex rounded-md  bg-slate-200  w-80 h-72 hover:opacity-60
+          shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] bg-[hsla(0,0%,98%,0.15) "
+    >
+      <Link to={"/userhome"}>
+        <div className="w-full  bg-cover bg-no-repeat  bg-fixed opacity-100 transition duration-300 ease-in-out  cursor-pointer ">
+          <img
+            className="rounded-t-md  w-screen object-cover h-40 "
+            src={full.imageUrl}
+            alt="no image"
+          />
+        </div>
+        <div className="">
+          <h5 className="grid grid-cols-2 py-4 mx-2 items-center  text-xl font-medium leading-tight">
+            {full.title}
+          </h5>
+          <div className="flex pt-8 justify-end px-4 text-3xl gap-4 items-end">
+            <MdEditNote onClick={handleEdit} />
+            <MdDeleteOutline onClick={handleDelete} />
+          </div>
+        </div>
+      </Link>
+    </div>
+  );
 }
 
-export default Card
+export default Card;

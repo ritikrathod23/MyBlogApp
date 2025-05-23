@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 function Home() {
   return (
     <>
-      <div className=" height text-xl text-center">
+      <div className=" mt-10 font-sans font-medium height text-xl text-center">
         <h2 className="text-5xl mb-7">Welcome to my home page</h2>
         <div>If your are new to this website , please register your self</div>
         <div className="mt-10 gap-9 flex justify-center content-center">
@@ -12,7 +12,7 @@ function Home() {
           <button
             // onClick={handleClick}
             type="button"
-            className="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+            className=" p-2 rounded-lg shadow-md w-20 text-sm bg-myOrange hover:bg-opacity-80"
           >
            SignUp  
           </button>
@@ -21,7 +21,7 @@ function Home() {
           <Link to={'/login'}>
           <button
             type="button"
-            className="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+            className="bg-myOrange p-2 rounded-lg shadow-md w-20 text-sm hover:bg-opacity-80 "
           >
            Login  
           </button>

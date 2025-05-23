@@ -15,10 +15,8 @@ function Dashboard() {
         // Check for an active session
         const session = await AuthService.getUserSession(); // Fetch current session
         if (session) {
-          console.log('Session active, redirecting to user home...');
           navigate('/userhome'); // Redirect to user home if session is active
         } else {
-          console.log('No active session, redirecting to login...');
           navigate('/'); // Redirect to login if no session
         }
       } catch (error) {
@@ -32,10 +30,10 @@ function Dashboard() {
 
   return (
     <>
-      <div className='static'>
+      <div className='h-screen font-sans'>
       <Navbar />
       <Container/>
-      {/* <Footer/> */}
+      <Footer/>
       </div>
 
     </>

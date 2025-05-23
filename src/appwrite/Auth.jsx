@@ -1,5 +1,6 @@
 import { Client, Account } from "appwrite"; // Import Client and Account classes
-import conf from '../conf'; // Ensure these keys are named correctly in your conf file
+import conf from '../conf';
+ // Ensure these keys are named correctly in your conf file
 
 class AuthService {
     client; // Client instance
@@ -17,7 +18,6 @@ class AuthService {
     async createAccount(email, password, name) {
         try {
             const userAccount = await this.account.create('unique()', email, password, name);
-            console.log("Account created successfully:", userAccount);
             return userAccount;
         } catch (error) {
             console.error("Can't create account, please enter valid credentials:", error.message || error);
@@ -49,6 +49,7 @@ class AuthService {
     async getUserSession() {
         try {
             const session = await this.account.getSession('current');
+
             // console.log("Current session data:", session);
             return session;
         } catch (error) {

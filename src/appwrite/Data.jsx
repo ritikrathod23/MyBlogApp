@@ -31,6 +31,7 @@ class DataService {
           title,
           content,
           fileId, 
+          Date : new Date
         }
       );
     } catch (error) {
@@ -47,7 +48,6 @@ class DataService {
         id,
         update,
       );
-      console.log("updated data:", updatedDocument);
       return updatedDocument;
     } catch (error) {
       console.error("Cannot Update data:", error.message || error);
@@ -63,7 +63,6 @@ class DataService {
         // Assuming you have a field named userId in your collection and want to filter by it
         // [Query.equal("userId", ["userId"])]
       );
-      console.log("User data:", documents);
       return documents;
     } catch (error) {
       console.error("Cannot fetch user data:", error.message || error);
@@ -93,7 +92,6 @@ class DataService {
         $id,
       
       );
-      console.log("File uploaded successfully:");
       return upload;
     } catch (error) {
       console.error("Cannot upload file:", error.message || error);
